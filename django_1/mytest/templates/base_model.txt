@@ -1,0 +1,5 @@
+<html>
+	<body>
+	现在我所在的位置是：{% block body %}{% endblock %}
+	</body>
+</html>

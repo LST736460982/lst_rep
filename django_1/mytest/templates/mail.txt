@@ -1,0 +1,21 @@
+<html>
+	<title>ÓÊÏä</title>
+<body>
+<h3>
+·¢¼þÏä
+</h3>
+<form action="" method="post">
+{% csrf_token %} 
+<table>
+{{ form.as_table }}
+</table>
+<input type="submit" value="·¢ËÍ"></input>
+
+<ul>
+<li style="color:red">{{ sucess }}</li>
+
+</ul>
+</form>
+</body>
+
+</html>

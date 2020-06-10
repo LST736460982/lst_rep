@@ -4,6 +4,8 @@ import datetime
 from mytest.forms import Mail
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
+from django import template
+register=template.Library()
 def hello(request):
     return HttpResponse("Hello World!")
 def date_time(request):
@@ -25,14 +27,21 @@ def current_time(request):
     return render(request,'time.html',time)
 @csrf_exempt
 def contact(request):
-    error=False
     if request.method=='POST':
         form=Mail(request.POST)
         if form.is_valid():
             data=form.cleaned_data
             send_mail(data['subject'],data['message'],['lst123456@qq.com'],[data['email'],])
-            return render(request,'mail.txt',{'sucess':'发送成功'})
+            return render(request,'mail.txt',{'sucess':'发送成功','form':form})
     else:
         form=Mail()
     return render(request,'mail.txt',{'form':form})
+def list(request):
+    article=[{'title':'蚊香','body':'可快速消灭蚊虫'},{'title':'书','body':'人丑就要多读书'}]
+    return render(request,'list.html',{'articles':article})
+@register.simple_tag
+def value(v1,v2):
+    return v1+v2
+def test(request):
+    return render(request,'albums-store.html')
 # Create your views here.

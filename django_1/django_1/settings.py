@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mytest',
     'sql',
+    'templates',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'django_1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'mytest/templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{'views':'mytest.views'}
         },
     },
 ]
@@ -121,3 +123,7 @@ DEFAULT_CHARSET='utf-8'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, "static"),
+os.path.join(BASE_DIR,"templates"),
+)

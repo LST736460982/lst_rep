@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.conf.urls import url
 from mytest import views
 urlpatterns = [
+    url(r'',views.list),
+    url(r'^test/$',views.test),
     url(r'^mail/$',views.contact),
     url(r'^pos/$',views.position),
     url(r'^current_time/$',views.current_time),
